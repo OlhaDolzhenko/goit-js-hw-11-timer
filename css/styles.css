@@ -1,0 +1,21 @@
+#timer-1 {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+}
+
+#timer-1 .field {
+  display: inline-block;
+  padding: 1em;
+  text-align: center;
+}
+#timer-1 .value {
+  font-size: 7em;
+}
+
+#timer-1 .label {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
