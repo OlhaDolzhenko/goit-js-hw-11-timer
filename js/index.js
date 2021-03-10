@@ -1,15 +1,7 @@
-const refs = {
-  timerDay: document.querySelector('span[data-value="days"]'),
-  timerHours: document.querySelector('span[data-value="hours"]'),
-  timerMins: document.querySelector('span[data-value="mins"]'),
-  timerSecs: document.querySelector('span[data-value="secs"]'),
-};
-
 class CountdownTimer {
-  constructor(selector, targetDate, onTick) {
+  constructor(selector, targetDate) {
     this.selector = selector;
     this.targetDate = new Date(targetDate);
-    this.onTick = onTick;
   }
 
   deltaTime() {
@@ -36,19 +28,23 @@ class CountdownTimer {
 
   countDown() {
     setInterval(() => {
-      const updatedTime = this.getTimeComponents();
-      this.onTick(updatedTime);
+      const timeComponents = this.getTimeComponents();
+      document.querySelector(
+        `${this.selector} [data-value="days"]`
+      ).textContent = timeComponents.days;
+      document.querySelector(
+        `${this.selector} [data-value="hours"]`
+      ).textContent = timeComponents.hours;
+      document.querySelector(
+        `${this.selector} [data-value="mins"]`
+      ).textContent = timeComponents.mins;
+      document.querySelector(
+        `${this.selector} [data-value="secs"]`
+      ).textContent = timeComponents.secs;
     }, 1000);
   }
 }
 
-function updateCountDown({ days, hours, mins, secs }) {
-  refs.timerDay.textContent = days;
-  refs.timerHours.textContent = hours;
-  refs.timerMins.textContent = mins;
-  refs.timerSecs.textContent = secs;
-}
-
-const timer = new CountdownTimer("#timer-1", "Jul 17, 2021", updateCountDown);
+const timer = new CountdownTimer("#timer-1", "Jul 17, 2021");
 
 timer.countDown();
